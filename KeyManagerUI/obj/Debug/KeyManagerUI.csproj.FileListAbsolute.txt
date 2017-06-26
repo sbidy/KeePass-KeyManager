@@ -1,0 +1,9 @@
+c:\users\traubs\documents\visual studio 2015\Projects\KeyManagerUI\KeyManagerUI\bin\Debug\KeyManagerUI.dll
+c:\users\traubs\documents\visual studio 2015\Projects\KeyManagerUI\KeyManagerUI\bin\Debug\KeyManagerUI.pdb
+c:\users\traubs\documents\visual studio 2015\Projects\KeyManagerUI\KeyManagerUI\bin\Debug\KeePass.exe
+c:\users\traubs\documents\visual studio 2015\Projects\KeyManagerUI\KeyManagerUI\bin\Debug\KeePass.XmlSerializers.dll
+c:\users\traubs\documents\visual studio 2015\Projects\KeyManagerUI\KeyManagerUI\obj\Debug\KeyManagerUI.KeyManagerUIForm.resources
+c:\users\traubs\documents\visual studio 2015\Projects\KeyManagerUI\KeyManagerUI\obj\Debug\KeyManagerUI.csproj.GenerateResource.Cache
+c:\users\traubs\documents\visual studio 2015\Projects\KeyManagerUI\KeyManagerUI\obj\Debug\KeyManagerUI.dll
+c:\users\traubs\documents\visual studio 2015\Projects\KeyManagerUI\KeyManagerUI\obj\Debug\KeyManagerUI.pdb
+C:\Users\TraubS\Documents\Visual Studio 2015\Projects\KeyManagerUI\KeyManagerUI\bin\Debug\KeePass.exe.config
