@@ -22,4 +22,14 @@ Copy the PLGX file to the same folder where KeePass lives.  Next time you start 
 To uninstall, remove the PLGX file and consult KeePass documentation.
 
 # Usage
-TbD
+When creating a new database, select "Key file / provider" and choose "KeePassX509Provider" from the drop-down list.
+
+This key provider can be combined with other key sources (master password, Windows user account).
+
+You will then be prompted to select the certificates via the KeyManagerUI for which the key should be encrypted.  The certificates that are presented were retrieved from the Windows certificate (CAPI) store or you import a flat file (.crt).
+
+Encrypting the key for multiple certificates is useful in various scenarios -- you have two different keys and certificates on different machines, you want to share the password database with a group of people (e.g. in SharePoint, git) etc.
+
+IMPORTANT:  Make sure you have access to at least one private key corresponding to the certificates.  As well, be sure to back up those private keys or ensure that they are recoverable in some way.  You will not be able to open the database without it.
+
+When opening the database, select the "KeePassX509Provider" key provider again.  The system will automatically find a private key to decrypt the database.  If a key is not found, you will see an error.
