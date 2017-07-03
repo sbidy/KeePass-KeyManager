@@ -28,7 +28,7 @@ This key provider can be combined with other key sources (master password, Windo
 
 You will then be prompted to select the certificates via the KeyManagerUI for which the key should be encrypted.  The certificates that are presented were retrieved from the Windows certificate (CAPI) store or you import a flat file (.crt).
 
-![Screen shot](/Capture?raw=true "Screen shot")
+![Screen shot](/Capture.PNG?raw=true "Screen shot")
 
 Encrypting the key for multiple certificates is useful in various scenarios -- you have two different keys and certificates on different machines, you want to share the password database with a group of people (e.g. in SharePoint, git) etc.
 
