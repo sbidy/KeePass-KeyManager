@@ -12,8 +12,8 @@ For more information about KeePass Security, please have a look at the KeePass S
 Technics and idea based on the plugins form Dirk Heitzmann, creative-webdesign.de and Mark Buchler, https://github.com/markbott/CertKeyProvider
 
 # Installation
-
-Copy the PLGX file to the same folder where KeePass lives.  Next time you start KeePass, KeePass should load the plugin.
+Link to the PLGX file --> https://github.com/sbidy/KeePass-KeyManager/releases/download/1.2b/KeyManagerUI.plgx
+Copy the PLGX file to the plugin folder where KeePass lives.  Next time you start KeePass, KeePass should load the plugin.
 
 To uninstall, remove the PLGX file and consult KeePass documentation.
 
