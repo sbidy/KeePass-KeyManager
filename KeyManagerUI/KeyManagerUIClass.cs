@@ -7,7 +7,7 @@ using System.IO;
 using KeePassLib.Utility;
 using KeePass.UI;
 
-// Build : & 'C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe' --plgx-create "C:\Users\TraubS\Documents\Visual Studio 2015\Projects\KeyManagerUI\KeyManagerUI"
+// Build : & 'C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe' --plgx-create "C:\Users\TraubS\Documents\GitHub\KeePass-KeyManager\KeyManagerUI"
 
 namespace KeyManagerUI
 {
@@ -167,7 +167,7 @@ namespace KeyManagerUI
             }
             catch (SystemException ex)  // covers IOException and CryptographicException
             {
-                MessageBox.Show("Error at encryption or IO error!");
+                MessageBox.Show("Error at encryption or IO error!\nIf you used a smart card for encryption, please provide/plugin fist!");
                 return null;
             }
         }

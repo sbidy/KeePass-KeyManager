@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Security.Cryptography.Pkcs;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
@@ -36,28 +37,35 @@ namespace KeyManagerUI
             ContentInfo contentInfo = new ContentInfo(msg);
 
             recipientCerts = checkCerts(recipientCerts);
-                        
-            //  Instantiate an EnvelopedCms object with the ContentInfo
-            //  above.
-            //  Has default SubjectIdentifierType IssuerAndSerialNumber.
-            //  Has default ContentEncryptionAlgorithm property value
-            //  RSA_DES_EDE3_CBC.
-            EnvelopedCms envelopedCms = new EnvelopedCms(contentInfo);
 
-            //  Formulate a CmsRecipient object collection that
-            //  represent information about the recipients 
-            //  to encrypt the message for.
-            if (recipientCerts.Count > 0)
+            if (recipientCerts != null)
             {
-                CmsRecipientCollection recips = new CmsRecipientCollection(SubjectIdentifierType.IssuerAndSerialNumber, recipientCerts);
+                //  Instantiate an EnvelopedCms object with the ContentInfo
+                //  above.
+                //  Has default SubjectIdentifierType IssuerAndSerialNumber.
+                //  Has default ContentEncryptionAlgorithm property value
+                //  RSA_DES_EDE3_CBC.
+                EnvelopedCms envelopedCms = new EnvelopedCms(contentInfo);
 
-                //  Encrypt the message for the recipient.
-                envelopedCms.Encrypt(recips);
+                //  Formulate a CmsRecipient object collection that
+                //  represent information about the recipients 
+                //  to encrypt the message for.
+                if (recipientCerts.Count > 0)
+                {
+                    CmsRecipientCollection recips = new CmsRecipientCollection(SubjectIdentifierType.IssuerAndSerialNumber, recipientCerts);
 
-                //  The encoded EnvelopedCms message contains the message
-                //  ciphertext and the information about each recipient 
-                //  that the message was enveloped for.
-                return envelopedCms.Encode();
+                    //  Encrypt the message for the recipient.
+                    envelopedCms.Encrypt(recips);
+
+                    //  The encoded EnvelopedCms message contains the message
+                    //  ciphertext and the information about each recipient 
+                    //  that the message was enveloped for.
+                    return envelopedCms.Encode();
+                }
+            }
+            else
+            {
+                throw new CryptographicException();
             }
             return null;
         }
@@ -175,7 +183,7 @@ namespace KeyManagerUI
 
             X509Certificate2Collection fcollection = allCerts.Find(X509FindType.FindByTimeValid, DateTime.Now, false);
             fcollection = fcollection.Find(X509FindType.FindByKeyUsage, X509KeyUsageFlags.KeyEncipherment, false);
-            X509Certificate2Collection store_certs = X509Certificate2UI.SelectFromCollection(fcollection, "SelectEncCert", "SelectEncCertLong", X509SelectionFlag.MultiSelection);
+            X509Certificate2Collection store_certs = X509Certificate2UI.SelectFromCollection(fcollection, "Select certificate", "Select a certificate from local Microsoft Windows store:", X509SelectionFlag.MultiSelection);
 
             applied_certs.AddRange(store_certs);
         }
@@ -212,12 +220,8 @@ namespace KeyManagerUI
                     {
                         reason.AppendLine(chain.ChainStatus[index].StatusInformation);
                     }
-                    DialogResult decision = MessageBox.Show("Certificate:\n"+cert.SubjectName.Name+"\n\ncan't validated - add anyway?\nReasons:"+reason, "Error",
-                        MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button3);
-                    if (decision == DialogResult.Cancel)
-                    {
-                        return null;
-                    }
+                    DialogResult decision = MessageBox.Show("Certificate:\n"+cert.SubjectName.Name+ "\n\ncan't validated and maybe not applicable -  try anyway?\nReasons: " + reason, "Error",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
                     if (decision == DialogResult.No)
                     {
                         toRemove.Insert(0, cert);

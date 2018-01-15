@@ -28,31 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyManagerUIForm));
-            this.load_key = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.change_key = new System.Windows.Forms.Button();
-            this.import_key = new System.Windows.Forms.Button();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.exit_button = new System.Windows.Forms.Button();
-            this.load_store_btn = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.new_key = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.mainMenu = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadCertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromLocalStoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.mainMenu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // load_key
-            // 
-            this.load_key.Location = new System.Drawing.Point(12, 12);
-            this.load_key.Name = "load_key";
-            this.load_key.Size = new System.Drawing.Size(125, 23);
-            this.load_key.TabIndex = 0;
-            this.load_key.Text = "Load Key";
-            this.load_key.UseVisualStyleBackColor = true;
-            this.load_key.Click += new System.EventHandler(this.load_key_Click);
             // 
             // openFileDialog1
             // 
@@ -60,23 +59,13 @@
             // 
             // change_key
             // 
-            this.change_key.Location = new System.Drawing.Point(490, 167);
+            this.change_key.Location = new System.Drawing.Point(336, 158);
             this.change_key.Name = "change_key";
             this.change_key.Size = new System.Drawing.Size(75, 23);
             this.change_key.TabIndex = 4;
             this.change_key.Text = "Save key";
             this.change_key.UseVisualStyleBackColor = true;
             this.change_key.Click += new System.EventHandler(this.change_click);
-            // 
-            // import_key
-            // 
-            this.import_key.Location = new System.Drawing.Point(11, 21);
-            this.import_key.Name = "import_key";
-            this.import_key.Size = new System.Drawing.Size(125, 23);
-            this.import_key.TabIndex = 1;
-            this.import_key.Text = "from file";
-            this.import_key.UseVisualStyleBackColor = true;
-            this.import_key.Click += new System.EventHandler(this.import_key_Click);
             // 
             // openFileDialog2
             // 
@@ -88,10 +77,12 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView1.Location = new System.Drawing.Point(167, 40);
+            this.listView1.Location = new System.Drawing.Point(12, 53);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(398, 121);
+            this.listView1.Size = new System.Drawing.Size(398, 99);
             this.listView1.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.listView1, "If a certificate is grayed out --> the certificate isn\'t installed on the local m" +
+        "achine!");
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView1_ItemChecked);
@@ -103,88 +94,169 @@
             // 
             // exit_button
             // 
-            this.exit_button.Location = new System.Drawing.Point(12, 167);
+            this.exit_button.Location = new System.Drawing.Point(255, 158);
             this.exit_button.Name = "exit_button";
             this.exit_button.Size = new System.Drawing.Size(75, 23);
             this.exit_button.TabIndex = 5;
-            this.exit_button.Text = "Exit";
+            this.exit_button.Text = "Close";
             this.exit_button.UseVisualStyleBackColor = true;
             this.exit_button.Click += new System.EventHandler(this.exit_button_click);
-            // 
-            // load_store_btn
-            // 
-            this.load_store_btn.Location = new System.Drawing.Point(11, 49);
-            this.load_store_btn.Name = "load_store_btn";
-            this.load_store_btn.Size = new System.Drawing.Size(125, 23);
-            this.load_store_btn.TabIndex = 2;
-            this.load_store_btn.Text = "from store";
-            this.load_store_btn.UseVisualStyleBackColor = true;
-            this.load_store_btn.Click += new System.EventHandler(this.load_store_btn_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.import_key);
-            this.groupBox1.Controls.Add(this.load_store_btn);
-            this.groupBox1.Location = new System.Drawing.Point(12, 81);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(142, 80);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Load certifcates";
             // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.CreatePrompt = true;
             this.saveFileDialog1.Filter = "KeyFIle|*.p7mkey";
             // 
-            // new_key
+            // mainMenu
             // 
-            this.new_key.Location = new System.Drawing.Point(12, 40);
-            this.new_key.Name = "new_key";
-            this.new_key.Size = new System.Drawing.Size(125, 23);
-            this.new_key.TabIndex = 8;
-            this.new_key.Text = "New Key";
-            this.new_key.UseVisualStyleBackColor = true;
-            this.new_key.Click += new System.EventHandler(this.new_key_Click);
+            this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.loadCertToolStripMenuItem,
+            this.toolStripMenuItem1});
+            this.mainMenu.Location = new System.Drawing.Point(0, 0);
+            this.mainMenu.Name = "mainMenu";
+            this.mainMenu.Size = new System.Drawing.Size(423, 24);
+            this.mainMenu.TabIndex = 9;
+            this.mainMenu.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openKeyToolStripMenuItem,
+            this.newKeyToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.closeToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // openKeyToolStripMenuItem
+            // 
+            this.openKeyToolStripMenuItem.Name = "openKeyToolStripMenuItem";
+            this.openKeyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openKeyToolStripMenuItem.Text = "Open key";
+            this.openKeyToolStripMenuItem.Click += new System.EventHandler(this.openKeyToolStripMenuItem_Click);
+            // 
+            // newKeyToolStripMenuItem
+            // 
+            this.newKeyToolStripMenuItem.Name = "newKeyToolStripMenuItem";
+            this.newKeyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newKeyToolStripMenuItem.Text = "New key";
+            this.newKeyToolStripMenuItem.Click += new System.EventHandler(this.newKeyToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // loadCertToolStripMenuItem
+            // 
+            this.loadCertToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fromFileToolStripMenuItem,
+            this.fromLocalStoreToolStripMenuItem});
+            this.loadCertToolStripMenuItem.Name = "loadCertToolStripMenuItem";
+            this.loadCertToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.loadCertToolStripMenuItem.Text = "Load cert.";
+            this.loadCertToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // fromFileToolStripMenuItem
+            // 
+            this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
+            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.fromFileToolStripMenuItem.Text = "From file";
+            this.fromFileToolStripMenuItem.Click += new System.EventHandler(this.fromFileToolStripMenuItem_Click);
+            // 
+            // fromLocalStoreToolStripMenuItem
+            // 
+            this.fromLocalStoreToolStripMenuItem.Name = "fromLocalStoreToolStripMenuItem";
+            this.fromLocalStoreToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.fromLocalStoreToolStripMenuItem.Text = "From local store";
+            this.fromLocalStoreToolStripMenuItem.Click += new System.EventHandler(this.fromLocalStoreToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(24, 20);
+            this.toolStripMenuItem1.Text = "?";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Selected certificates:";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(1, 178);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(83, 13);
+            this.linkLabel1.TabIndex = 11;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "GitHub project";
+            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // KeyManagerUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 202);
-            this.Controls.Add(this.new_key);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(423, 193);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.exit_button);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.change_key);
-            this.Controls.Add(this.load_key);
+            this.Controls.Add(this.mainMenu);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.mainMenu;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "KeyManagerUIForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "KeePass KeyManager v1.2b";
+            this.Text = "KeePass KeyManager v1.3";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyManagerUIForm_KeyDown);
-            this.groupBox1.ResumeLayout(false);
+            this.mainMenu.ResumeLayout(false);
+            this.mainMenu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button load_key;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button change_key;
-        private System.Windows.Forms.Button import_key;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button exit_button;
-        private System.Windows.Forms.Button load_store_btn;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.Button new_key;
+        private System.Windows.Forms.MenuStrip mainMenu;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openKeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newKeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadCertToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fromFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fromLocalStoreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
