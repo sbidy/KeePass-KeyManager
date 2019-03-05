@@ -7,7 +7,7 @@ using System.IO;
 using KeePassLib.Utility;
 using KeePass.UI;
 
-// Build : & 'C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe' --plgx-create "C:\Users\TraubS\Documents\GitHub\KeePass-KeyManager\KeyManagerUI"
+// Build : & 'C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe' --plgx-create "C:\Users\TraubS\Documents\GitHub\KeePass-KeyManager\KeyManagerUI\"
 
 namespace KeyManagerUI
 {
@@ -92,7 +92,14 @@ namespace KeyManagerUI
         /// notified of the error.</returns>
         public override byte[] GetKey(KeyProviderQueryContext ctx)
         {
-            return ctx.CreatingNewKey ? GetNewKey() : GetExistingKey(ctx.DatabaseIOInfo);
+            if (ctx.CreatingNewKey)
+            {
+              return GetNewKey();
+            }
+            else
+            {
+               return GetExistingKey(ctx.DatabaseIOInfo);
+            }
         }
 
         byte[] GetNewKey()
@@ -159,11 +166,11 @@ namespace KeyManagerUI
 
                 if (tooBig)
                 {
-                    MessageBox.Show("Kes File ist to big");
+                    MessageBox.Show("Key File is to big");
                     return null;
                 }
                 Certmanager cert_mgr = new Certmanager();
-                return cert_mgr.DecryptMsg(p7m);
+                return cert_mgr.DecryptMsg2(p7m);
             }
             catch (SystemException ex)  // covers IOException and CryptographicException
             {

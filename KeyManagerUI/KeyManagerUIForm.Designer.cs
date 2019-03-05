@@ -46,10 +46,14 @@
             this.loadCertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromLocalStoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadKeyRingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveKeyRingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
             this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,26 +138,26 @@
             // openKeyToolStripMenuItem
             // 
             this.openKeyToolStripMenuItem.Name = "openKeyToolStripMenuItem";
-            this.openKeyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openKeyToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.openKeyToolStripMenuItem.Text = "Open key";
             this.openKeyToolStripMenuItem.Click += new System.EventHandler(this.openKeyToolStripMenuItem_Click);
             // 
             // newKeyToolStripMenuItem
             // 
             this.newKeyToolStripMenuItem.Name = "newKeyToolStripMenuItem";
-            this.newKeyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newKeyToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.newKeyToolStripMenuItem.Text = "New key";
             this.newKeyToolStripMenuItem.Click += new System.EventHandler(this.newKeyToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -161,7 +165,9 @@
             // 
             this.loadCertToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fromFileToolStripMenuItem,
-            this.fromLocalStoreToolStripMenuItem});
+            this.fromLocalStoreToolStripMenuItem,
+            this.loadKeyRingToolStripMenuItem,
+            this.saveKeyRingToolStripMenuItem});
             this.loadCertToolStripMenuItem.Name = "loadCertToolStripMenuItem";
             this.loadCertToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.loadCertToolStripMenuItem.Text = "Load cert.";
@@ -170,16 +176,30 @@
             // fromFileToolStripMenuItem
             // 
             this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
-            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fromFileToolStripMenuItem.Text = "From file";
             this.fromFileToolStripMenuItem.Click += new System.EventHandler(this.fromFileToolStripMenuItem_Click);
             // 
             // fromLocalStoreToolStripMenuItem
             // 
             this.fromLocalStoreToolStripMenuItem.Name = "fromLocalStoreToolStripMenuItem";
-            this.fromLocalStoreToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.fromLocalStoreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fromLocalStoreToolStripMenuItem.Text = "From local store";
             this.fromLocalStoreToolStripMenuItem.Click += new System.EventHandler(this.fromLocalStoreToolStripMenuItem_Click);
+            // 
+            // loadKeyRingToolStripMenuItem
+            // 
+            this.loadKeyRingToolStripMenuItem.Name = "loadKeyRingToolStripMenuItem";
+            this.loadKeyRingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadKeyRingToolStripMenuItem.Text = "Load key ring (beta)";
+            this.loadKeyRingToolStripMenuItem.Click += new System.EventHandler(this.loadKeyRingToolStripMenuItem_Click);
+            // 
+            // saveKeyRingToolStripMenuItem
+            // 
+            this.saveKeyRingToolStripMenuItem.Name = "saveKeyRingToolStripMenuItem";
+            this.saveKeyRingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveKeyRingToolStripMenuItem.Text = "Save key ring (beta)";
+            this.saveKeyRingToolStripMenuItem.Click += new System.EventHandler(this.saveKeyRingToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -208,6 +228,14 @@
             this.linkLabel1.Text = "GitHub project";
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Blue;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // openFileDialog3
+            // 
+            this.openFileDialog3.Filter = "KeyRingFile|*.kmk";
+            // 
+            // saveFileDialog2
+            // 
+            this.saveFileDialog2.Filter = "KeyRingFile|*.kmk";
             // 
             // KeyManagerUIForm
             // 
@@ -258,5 +286,9 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.ToolStripMenuItem loadKeyRingToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog3;
+        private System.Windows.Forms.ToolStripMenuItem saveKeyRingToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog2;
     }
 }

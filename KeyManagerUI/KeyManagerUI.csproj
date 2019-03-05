@@ -61,6 +61,7 @@
     <Compile Include="KeyManagerUIForm.Designer.cs">
       <DependentUpon>KeyManagerUIForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Keyring.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

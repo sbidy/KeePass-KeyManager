@@ -12,6 +12,7 @@ namespace KeyManagerUI
     {
         private byte[] fileBytes;
         private string key_path;
+
         private Certmanager cert_mgmt = new Certmanager();
         public KeyManagerUIForm()
         {
@@ -73,6 +74,8 @@ namespace KeyManagerUI
                         {
                             File.WriteAllBytes(key_path, cert_mgmt.EncryptMsg(cert_mgmt.DecryptMsg(fileBytes), cert_mgmt.applied_certs));
                             MessageBox.Show("New key saved!", "Key saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            cert_mgmt.keyring_certs = cert_mgmt.applied_certs;
+                            safekeyring();
                         }
                     }
                 }
@@ -83,9 +86,8 @@ namespace KeyManagerUI
             }
             catch (Exception some_ex)
             {
-                MessageBox.Show("A genery error occured - plase check the file and certificates!\nPlease open an issue on GitHub :-) ." + some_ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("A general error occurred - please check the file and certificates!\nPlease open an issue on GitHub :-) ." + some_ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void addToList(X509Certificate2Collection tolist)
@@ -97,6 +99,7 @@ namespace KeyManagerUI
                 item.Checked = true;
                 listView1.Items.Add(item);
             }
+
             foreach (string serial in cert_mgmt.not_applied_certs)
             {
                 ListViewItem item = new ListViewItem(serial);
@@ -152,8 +155,13 @@ namespace KeyManagerUI
                     // read the file
                     fileBytes = File.ReadAllBytes(key_path);
                     this.Text = "Loaded key: " + key_path;
+
+                    DialogResult key_question = MessageBox.Show("Do you want to oben a keyring file?", "Keyring", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (key_question == DialogResult.Yes)
+                        readkeyring();
+
                     cert_mgmt.getRecipient(fileBytes);
-                    addToList(cert_mgmt.applied_certs);
+                    addToList(cert_mgmt.removeDuplicates(cert_mgmt.applied_certs));
                 }
                 catch (IOException)
                 {
@@ -211,6 +219,51 @@ namespace KeyManagerUI
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/sbidy/KeePass-KeyManager");
+        }
+
+        private void loadKeyRingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            readkeyring();
+        }
+        private void saveKeyRingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            safekeyring();
+        }
+        private void safekeyring()
+        {
+            try
+            {
+                DialogResult save_dialog = saveFileDialog2.ShowDialog();
+                if (save_dialog == DialogResult.OK)
+                {
+                    Keyring kk = new Keyring();
+                    
+                    kk.SerializeKeyring(cert_mgmt.keyring_certs, saveFileDialog2.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Can't save key ring file!\n" + ex);
+            }
+        }
+        private void readkeyring()
+        {
+            if (openFileDialog3.ShowDialog() == DialogResult.OK)
+            {
+                string file = openFileDialog3.FileName;
+
+                try
+                {
+                    Keyring kk = new Keyring();
+                    MessageBox.Show(file);
+                    cert_mgmt.applied_certs.AddRange(kk.DeserializeKeyring(file));
+                    addToList(cert_mgmt.applied_certs);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Can't read key ring file!\n" + ex);
+                }
+            }
         }
     }
 }

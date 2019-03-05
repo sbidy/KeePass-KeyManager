@@ -17,4 +17,5 @@ C:\Users\TraubS\Documents\GitHub\KeePass-KeyManager\KeyManagerUI\obj\Debug\KeyMa
 C:\Users\TraubS\Documents\GitHub\KeePass-KeyManager\KeyManagerUI\obj\Debug\KeyManagerUI.csproj.CoreCompileInputs.cache
 C:\Users\TraubS\Documents\GitHub\KeePass-KeyManager\KeyManagerUI\obj\Debug\KeyManagerUI.dll
 C:\Users\TraubS\Documents\GitHub\KeePass-KeyManager\KeyManagerUI\obj\Debug\KeyManagerUI.pdb
-C:\Users\TraubS\Documents\GitHub\KeePass-KeyManager\KeyManagerUI\obj\Debug\KeyManagerUI.csprojResolveAssemblyReference.cache
+C:\Users\TraubS\Documents\GitHub\KeePass-KeyManager\KeyManagerUI\obj\Debug\KeyManagerUI.csproj.CopyComplete
+C:\Users\TraubS\Documents\GitHub\KeePass-KeyManager\KeyManagerUI\obj\Debug\KeyManagerUI.csprojAssemblyReference.cache

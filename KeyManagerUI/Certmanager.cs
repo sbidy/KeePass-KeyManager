@@ -13,6 +13,7 @@ namespace KeyManagerUI
     class Certmanager
     {
         public X509Certificate2Collection applied_certs;
+        public X509Certificate2Collection keyring_certs;
         private HashSet<string> _not_applied_certs = new HashSet<string>();
         public HashSet<string> not_applied_certs
         {
@@ -21,6 +22,7 @@ namespace KeyManagerUI
         public Certmanager ()
         {
             applied_certs = new X509Certificate2Collection();
+            keyring_certs = new X509Certificate2Collection();
         }
 
         /// <summary>
@@ -82,7 +84,7 @@ namespace KeyManagerUI
             //  Decode the message.
             envelopedCms.Decode(encodedEnvelopedCms);
 
-            X509Store myStore = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            X509Store myStore = new X509Store(StoreName.My);
             myStore.Open(OpenFlags.ReadOnly);
             envelopedCms.Decrypt(myStore.Certificates);
             myStore.Close();
@@ -91,7 +93,24 @@ namespace KeyManagerUI
             //  after the Decrypt method is invoked.
             return envelopedCms.ContentInfo.Content;
         }
+        /// <summary>
+        /// Decrypt a message using a private key available on the system.
+        /// </summary>
+        /// <param name="encodedEnvelopedCms">Encrypted blob</param>
+        /// <returns>Decrypted data, or null if there was an error</returns>
+        public byte[] DecryptMsg2(byte[] encodedEnvelopedCms)
+        {
+            //  Prepare object in which to decode and decrypt.
+            EnvelopedCms envelopedCms = new EnvelopedCms();
 
+            //  Decode the message.
+            envelopedCms.Decode(encodedEnvelopedCms);
+            envelopedCms.Decrypt();
+      
+            //  The decrypted message occupies the ContentInfo property
+            //  after the Decrypt method is invoked.
+            return envelopedCms.ContentInfo.Content;
+        }
         public void getRecipient(byte[] encodedEnvelopedCms)
         {
             _not_applied_certs = new HashSet<string>();
@@ -106,6 +125,10 @@ namespace KeyManagerUI
             {
                 X509IssuerSerial serial = (X509IssuerSerial)info.RecipientIdentifier.Value;
                 X509Certificate2Collection found_certs = FindCerts(serial.SerialNumber.ToString());
+                found_certs.AddRange(applied_certs);
+
+                if (keyring_certs.Count > 0)
+                    found_certs = keyring_certs.Find(X509FindType.FindBySerialNumber, serial.SerialNumber.ToString(), true);
 
                 if (found_certs.Count == 0)
                     _not_applied_certs.Add(serial.SerialNumber.ToString());
@@ -142,7 +165,7 @@ namespace KeyManagerUI
         /// </summary>
         /// <param name="source">The input collection</param>
         /// <returns>Output collection without duplicates</returns>
-        private X509Certificate2Collection removeDuplicates(X509Certificate2Collection source)
+        public X509Certificate2Collection removeDuplicates(X509Certificate2Collection source)
         {
             X509Certificate2Collection output = new X509Certificate2Collection();
             HashSet<string> serials = new HashSet<string>();
@@ -181,7 +204,7 @@ namespace KeyManagerUI
             addrBookStore.Close();
             myStore.Close();
 
-            X509Certificate2Collection fcollection = allCerts.Find(X509FindType.FindByTimeValid, DateTime.Now, false);
+            X509Certificate2Collection fcollection = allCerts; //.Find(X509FindType.FindByTimeValid, DateTime.Now, false);
             fcollection = fcollection.Find(X509FindType.FindByKeyUsage, X509KeyUsageFlags.KeyEncipherment, false);
             X509Certificate2Collection store_certs = X509Certificate2UI.SelectFromCollection(fcollection, "Select certificate", "Select a certificate from local Microsoft Windows store:", X509SelectionFlag.MultiSelection);
 
