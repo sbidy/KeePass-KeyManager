@@ -147,7 +147,7 @@ namespace KeyManagerUI
                 // fall back on opening a local file
                 // FUTURE ENHANCEMENT: allow user to enter a URL and name/pwd as well
 
-                OpenFileDialog ofd = UIUtil.CreateOpenFileDialog("KeePassX509Provider", UIUtil.CreateFileTypeFilter(CertProtKeyFileExtension, "x05KeyFile", true), 1, CertProtKeyFileExtension, false /* multi-select */, true);
+                OpenFileDialog ofd = (OpenFileDialog)UIUtil.CreateOpenFileDialog("KeePassX509Provider", UIUtil.CreateFileTypeFilter(CertProtKeyFileExtension, "x05KeyFile", true), 1, CertProtKeyFileExtension, false /* multi-select */, string.Empty).FileDialog;
 
                 if (ofd.ShowDialog() != DialogResult.OK)
                 {
