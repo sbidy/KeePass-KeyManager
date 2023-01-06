@@ -45,9 +45,9 @@ namespace KeyManagerUI
                 //  Instantiate an EnvelopedCms object with the ContentInfo
                 //  above.
                 //  Has default SubjectIdentifierType IssuerAndSerialNumber.
-                //  Has default ContentEncryptionAlgorithm property value
-                //  RSA_DES_EDE3_CBC.
-                EnvelopedCms envelopedCms = new EnvelopedCms(contentInfo);
+                //  Force usage of AES256 instead of 3DES
+                Oid aes256 = Oid.FromFriendlyName("aes256", OidGroup.EncryptionAlgorithm);
+                EnvelopedCms envelopedCms = new EnvelopedCms(contentInfo, new AlgorithmIdentifier(aes256));
 
                 //  Formulate a CmsRecipient object collection that
                 //  represent information about the recipients 
